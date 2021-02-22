@@ -119,7 +119,8 @@
     "shx": "^0.3.3",
     "tree-kill": "^1.2.2",
     "wdio-image-comparison-service": "^1.14.0",
-    "yeoman-test": "^3.0.0"
+    "yeoman-test": "^3.0.0",
+    "fast-xml-parser": "^3.17.5"
   },
   "scripts": {
     "prepare": "shx rm -rf dist && tsc",

@@ -45,3 +45,5 @@ jobs:
               run: npm run lint -- ${{ steps.variables.outputs.arg }}
             - name: "Running unit tests"
               run: npm run test -- ${{ steps.variables.outputs.arg }}
+            - name: "Validating widgets' versions"
+              run: npm run validate:version -- ${{ steps.variables.outputs.arg }}
