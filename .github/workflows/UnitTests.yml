@@ -32,6 +32,8 @@ jobs:
               id: variables
               run:
                   echo "::set-output name=arg::$(if [ "${{ steps.files.outputs.global_files }}" = "" ] && ${{ github.event_name == 'pull_request' }}; then echo '--since origin/${{ github.base_ref }}'; else echo ''; fi)"
+            - name: "Validating widgets' versions"
+              run: npm run validate:version -- ${{ steps.variables.outputs.arg }}
             - name: "Defining cache"
               uses: actions/cache@v2
               env:
@@ -45,5 +47,3 @@ jobs:
               run: npm run lint -- ${{ steps.variables.outputs.arg }}
             - name: "Running unit tests"
               run: npm run test -- ${{ steps.variables.outputs.arg }}
-            - name: "Validating widgets' versions"
-              run: npm run validate:version -- ${{ steps.variables.outputs.arg }}
