@@ -2,8 +2,8 @@ const { readFile } = require("fs").promises;
 const { join } = require("path");
 const { parseStringPromise } = require("xml2js");
 
-main().catch(e => {
-    console.error(e);
+main().catch(error => {
+    console.error(error);
     process.exit(1);
 });
 
@@ -20,5 +20,5 @@ async function main() {
 
     if (packageJsonVersion && packageXmlVersion && packageJsonVersion === packageXmlVersion) return;
 
-    throw new Error(`[${packageJson.name}] Package.json version does not match widget's package.xml version.`);
+    throw new Error(`[${packageJson.name}] package.json version does not match widget's package.xml version.`);
 }

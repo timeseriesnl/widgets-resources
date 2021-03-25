@@ -25,7 +25,7 @@
     "publish": "ts-node --project ./scripts/tsconfig.json ./scripts/release/Release.ts",
     "release": "lerna run release --ignore @mendix/custom-widgets-utils-internal",
     "version": "ts-node --project ./scripts/tsconfig.json ./scripts/release/BumpVersion.ts",
-    "validate:version": "lerna run validate:version --ignore @widgets-resources/utils-react-widgets --stream"
+    "validate-staged-widget-versions": "node scripts/validation/validate-versions-staged-files.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --config \"./prettier.config.js\" --pattern \"**/{src,script,test}/**/*.{js,jsx,ts,tsx,scss,html}\"",
+      "pre-commit": "pretty-quick --staged --config \"./prettier.config.js\" --pattern \"**/{src,script,test}/**/*.{js,jsx,ts,tsx,scss,html}\" && npm run validate-staged-widget-versions",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
