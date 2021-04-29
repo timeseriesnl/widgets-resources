@@ -1,0 +1,42 @@
+{
+    "DivContainer": [
+        {
+            "name": "Outline",
+            "type": "Dropdown",
+            "description": "Add variety to containers, add an elevated or bordered appearance.",
+            "options": [
+                {
+                    "name": "Elevated",
+                    "class": "shadow"
+                },
+                {
+                    "name": "Bordered",
+                    "class": "border"
+                }
+            ]
+        },
+        {
+            "name": "Alert Type",
+            "type": "Dropdown",
+            "description": "Add a contextual class to help convey the alerts message to the user.",
+            "options": [
+                {
+                    "name": "Primary",
+                    "class": "alert-primary"
+                },
+                {
+                    "name": "Success",
+                    "class": "alert-success"
+                },
+                {
+                    "name": "Warning",
+                    "class": "alert-warning"
+                },
+                {
+                    "name": "Danger",
+                    "class": "alert-danger"
+                }
+            ]
+        }
+    ]
+}

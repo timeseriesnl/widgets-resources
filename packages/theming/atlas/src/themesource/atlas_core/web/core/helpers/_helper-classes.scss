@@ -345,14 +345,7 @@
         }
     }
 
-    //Box-shadow
-
-    .shadow {
-        box-shadow: 0 2px 20px 1px rgba(5, 15, 129, 0.05) #{$important-helpers-value};
-    }
-
     //Height helpers
-
     .h-25 {
         height: 25% #{$important-helpers-value};
     }
@@ -370,7 +363,6 @@
     }
 
     //Width helpers
-
     .w-25 {
         width: 25% #{$important-helpers-value};
     }
@@ -410,5 +402,22 @@
 
     .border-rounded {
         border-radius: $border-radius-default #{$important-helpers-value};
+    }
+
+    //Elevation helpers
+    .shadow-none{
+        box-shadow: none #{$important-helpers-value};
+    }
+
+    .shadow {
+        box-shadow: 0 8px 16px 0px rgba(5, 15, 129, 0.15) #{$important-helpers-value};
+    }
+
+    .shadow-sm{
+        box-shadow: 0px 2px 4px 0px rgba(5, 15, 129, 0.075) #{$important-helpers-value};
+    }
+
+    .shadow-lg{
+        box-shadow: 0px 16px 32px 0px rgba(5, 15, 129, 0.176) #{$important-helpers-value};
     }
 }
