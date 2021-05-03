@@ -52,28 +52,24 @@ async function preCommit() {
                     if (!packageJsonVersion) filesMissingVersion.push("package.json");
 
                     if (filesMissingVersion.length)
-                        reject(
-                            new Error(`[${packageJson.name}] ${filesMissingVersion.join(" and ")} missing version.`)
-                        );
+                        reject(`[${packageJson.name}] ${filesMissingVersion.join(" and ")} missing version.`);
 
                     if (packageJsonVersion === packageXmlVersion) resolve();
 
-                    reject(new Error(`[${packageJson.name}] package.json and package.xml versions do not match.`));
+                    reject(`[${packageJson.name}] package.json and package.xml versions do not match.`);
                 })
             );
         }
 
-        const validationResults = await Promise.all(
-            validationPromises.map(promise => promise.catch(error => error.message.split("\n")[0]))
-        );
-
-        const failedResults = validationResults.filter(result => result);
-
-        for (const error of failedResults) {
-            console.error(error);
-        }
+        const failedResults = (
+            await Promise.all(validationPromises.map(promise => promise.catch(error => error)))
+        ).filter(result => result);
 
         if (failedResults.length) {
+            for (const error of failedResults) {
+                console.error(error);
+            }
+
             throw new Error("Widget version validation failed. See above for details.");
         }
     }
