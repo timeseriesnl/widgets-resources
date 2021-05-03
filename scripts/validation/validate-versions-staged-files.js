@@ -33,11 +33,9 @@ async function precommit() {
         for (const changedWidgetPackage of changedWidgetPackages) {
             validationPromises.push(
                 new Promise((resolve, reject) => {
-                    execFileAsync(
-                        "node",
-                        [join(process.cwd(), "packages/tools/pluggable-widgets-tools/scripts/validate-version.js")],
-                        { cwd: changedWidgetPackage.location }
-                    )
+                    execFileAsync("node", [join(process.cwd(), "scripts/validation/validate-version.js")], {
+                        cwd: changedWidgetPackage.location
+                    })
                         .then(() => resolve())
                         .catch(error => reject(error));
                 })
