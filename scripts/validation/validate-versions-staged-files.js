@@ -5,12 +5,12 @@ const { exec, execFile } = require("child_process");
 const execAsync = promisify(exec);
 const execFileAsync = promisify(execFile);
 
-precommit().catch(error => {
+preCommit().catch(error => {
     console.error(error);
     process.exit(1);
 });
 
-async function precommit() {
+async function preCommit() {
     const [{ stdout: lernaPackages }, { stdout: stagedFiles }] = await Promise.all([
         execAsync("./node_modules/.bin/lerna ls --json --all"),
         execAsync("git diff --staged --name-only")
@@ -22,10 +22,13 @@ async function precommit() {
             staged.some(
                 changedFilePath =>
                     dirname(join(process.cwd(), changedFilePath)).includes(location) &&
-                    ["package.json", "package.xml"].includes(changedFilePath.split("/").pop())
+                    changedFilePath
+                        .split("/")
+                        .pop()
+                        .match(/package\.(json|xml)$/)
             )
         )
-        .filter(({ location }) => location.includes("pluggableWidgets") || location.includes("customWidgets"));
+        .filter(({ location }) => location.match(/(pluggable|custom)Widgets/));
 
     if (changedWidgetPackages.length) {
         const validationPromises = [];
