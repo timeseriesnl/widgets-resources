@@ -12,7 +12,7 @@ preCommit().catch(error => {
 
 async function preCommit() {
     const [{ stdout: lernaPackages }, { stdout: stagedFiles }] = await Promise.all([
-        execAsync("./node_modules/.bin/lerna ls --json --all"),
+        execAsync(`${join(process.cwd(), "node_modules", ".bin", "lerna")} ls --json --all`),
         execAsync("git diff --staged --name-only")
     ]);
     const packages = JSON.parse(lernaPackages.trim());
@@ -36,7 +36,7 @@ async function preCommit() {
         for (const changedWidgetPackage of changedWidgetPackages) {
             validationPromises.push(
                 new Promise((resolve, reject) => {
-                    execFileAsync("node", [join(process.cwd(), "scripts/validation/validate-version.js")], {
+                    execFileAsync("node", [join(process.cwd(), "scripts", "validation", "validate-version.js")], {
                         cwd: changedWidgetPackage.location
                     })
                         .then(() => resolve())
