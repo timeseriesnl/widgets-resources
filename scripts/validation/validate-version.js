@@ -15,8 +15,15 @@ async function main() {
     const packageXmlVersion = packageXmlAsJson.package.clientModule[0].$.version;
     const packageJson = JSON.parse((await readFile(join(process.cwd(), "package.json"))).toString());
     const packageJsonVersion = packageJson.version;
+    const filesMissingVersion = [];
 
-    if (packageJsonVersion && packageXmlVersion && packageJsonVersion === packageXmlVersion) return;
+    if (!packageXmlVersion) filesMissingVersion.push("package.xml");
+    if (!packageJsonVersion) filesMissingVersion.push("package.json");
 
-    throw new Error(`[${packageJson.name}] package.json version does not match widget's package.xml version.`);
+    if (filesMissingVersion.length)
+        throw new Error(`[${packageJson.name}] ${filesMissingVersion.join(" and ")} missing version.`);
+
+    if (packageJsonVersion === packageXmlVersion) return;
+
+    throw new Error(`[${packageJson.name}] package.json and package.xml versions do not match.`);
 }
