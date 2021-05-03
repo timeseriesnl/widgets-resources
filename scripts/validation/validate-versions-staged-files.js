@@ -12,7 +12,7 @@ preCommit().catch(error => {
 
 async function preCommit() {
     const [{ stdout: lernaPackages }, { stdout: stagedFiles }] = await Promise.all([
-        execAsync(`${join(process.cwd(), "node_modules", ".bin", "lerna")} ls --json --all`),
+        execAsync("npx lerna ls --json --all"),
         execAsync("git diff --staged --name-only")
     ]);
     const packages = JSON.parse(lernaPackages.trim());
