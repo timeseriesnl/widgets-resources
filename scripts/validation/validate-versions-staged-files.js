@@ -1,9 +1,10 @@
-const { join, dirname } = require("path");
+const { readFile } = require("fs").promises;
 const { promisify } = require("util");
-const { exec, execFile } = require("child_process");
+const { join, dirname } = require("path");
+const { exec } = require("child_process");
+const { parseStringPromise } = require("xml2js");
 
 const execAsync = promisify(exec);
-const execFileAsync = promisify(execFile);
 
 preCommit().catch(error => {
     console.error(error);
@@ -35,18 +36,35 @@ async function preCommit() {
 
         for (const changedWidgetPackage of changedWidgetPackages) {
             validationPromises.push(
-                new Promise((resolve, reject) => {
-                    execFileAsync("node", [join(process.cwd(), "scripts", "validation", "validate-version.js")], {
-                        cwd: changedWidgetPackage.location
-                    })
-                        .then(() => resolve())
-                        .catch(error => reject(error));
+                new Promise(async (resolve, reject) => {
+                    const packageXmlAsJson = await parseStringPromise(
+                        (await readFile(join(changedWidgetPackage.location, "src", "package.xml"))).toString(),
+                        { ignoreAttrs: false }
+                    );
+                    const packageXmlVersion = packageXmlAsJson.package.clientModule[0].$.version;
+                    const packageJson = JSON.parse(
+                        (await readFile(join(changedWidgetPackage.location, "package.json"))).toString()
+                    );
+                    const packageJsonVersion = packageJson.version;
+                    const filesMissingVersion = [];
+
+                    if (!packageXmlVersion) filesMissingVersion.push("package.xml");
+                    if (!packageJsonVersion) filesMissingVersion.push("package.json");
+
+                    if (filesMissingVersion.length)
+                        reject(
+                            new Error(`[${packageJson.name}] ${filesMissingVersion.join(" and ")} missing version.`)
+                        );
+
+                    if (packageJsonVersion === packageXmlVersion) resolve();
+
+                    reject(new Error(`[${packageJson.name}] package.json and package.xml versions do not match.`));
                 })
             );
         }
 
         const validationResults = await Promise.all(
-            validationPromises.map(promise => promise.catch(error => error.message.split("\n")[1]))
+            validationPromises.map(promise => promise.catch(error => error.message.split("\n")[0]))
         );
 
         const failedResults = validationResults.filter(result => result);
