@@ -27,9 +27,9 @@ async function precommit() {
         )
         .filter(({ location }) => location.includes("pluggableWidgets") || location.includes("customWidgets"));
 
-    const validationPromises = [];
-
     if (changedWidgetPackages.length) {
+        const validationPromises = [];
+
         for (const changedWidgetPackage of changedWidgetPackages) {
             validationPromises.push(
                 new Promise((resolve, reject) => {
