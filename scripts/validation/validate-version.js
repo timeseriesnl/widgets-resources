@@ -10,9 +10,7 @@ main().catch(error => {
 async function main() {
     const packageXmlAsJson = await parseStringPromise(
         (await readFile(join(process.cwd(), "src/package.xml"))).toString(),
-        {
-            ignoreAttrs: false
-        }
+        { ignoreAttrs: false }
     );
     const packageXmlVersion = packageXmlAsJson.package.clientModule[0].$.version;
     const packageJson = JSON.parse((await readFile(join(process.cwd(), "package.json"))).toString());
