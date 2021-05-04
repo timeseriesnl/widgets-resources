@@ -61,9 +61,9 @@ async function preCommit() {
             );
         }
 
-        const failedResults = (
-            await Promise.all(validationPromises.map(promise => promise.catch(error => error)))
-        ).filter(result => result);
+        const failedResults = await Promise.allSettled(validationPromises).then(results =>
+            results.filter(result => result.status === "rejected").map(result => result.reason)
+        );
 
         if (failedResults.length) {
             for (const error of failedResults) {
