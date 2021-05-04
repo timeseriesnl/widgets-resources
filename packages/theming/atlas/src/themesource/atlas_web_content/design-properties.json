@@ -37,6 +37,33 @@
                     "class": "alert-danger"
                 }
             ]
+        },
+        {
+            "name": "Step state",
+            "type": "Dropdown",
+            "description": "Change the state of the step. Use active or visited",
+            "options": [
+                {
+                    "name": "Active step",
+                    "class": "step-active"
+                },
+                {
+                    "name": "Visited step",
+                    "class": "step-visited"
+                }
+            ]
+        },
+        {
+            "name": "Underlined",
+            "type": "Toggle",
+            "description": "Add an underline to the breadcrumb",
+            "class": "breadcrumb-underline"
+        },
+        {
+            "name": "Size",
+            "type": "Toggle",
+            "description": "Change the szie of the breadcrumb",
+            "class": "breadcrumb-large"
         }
     ]
 }
