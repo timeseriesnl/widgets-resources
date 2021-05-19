@@ -306,6 +306,5 @@ const nativeExternal = [
     /^react-native-reanimated(\/|$)/,
     /^react-native-svg(\/|$)/,
     /^react-native-vector-icons(\/|$)/,
-    /^react-native-web(\/|$)/,
-    /^react-navigation(\/|$)/,
+    /^react-navigation(\/|$)/
 ];
