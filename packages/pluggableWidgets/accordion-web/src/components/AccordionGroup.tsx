@@ -21,11 +21,11 @@ export interface AccordionGroupProps {
 export default function AccordionGroup(props: AccordionGroupProps): ReactElement | null {
     const { group, accordionGroupsDispatch } = props;
 
-    // const previousVisiblePropValue = useRef(group.visible);
+    const previousVisiblePropValue = useRef(group.visible);
     const previousCollapsedPropValue = useRef(group.collapsed);
 
     // ignore
-    // const [divContentMounted, setDivContentMounted] = useState(group.visible && !group.collapsed);
+    const divContentMounted = useRef(group.visible && !group.collapsed);
     // console.log(divContentMounted);
 
     const [groupElement, setGroupElement] = useState<HTMLElement>();
@@ -75,7 +75,6 @@ export default function AccordionGroup(props: AccordionGroupProps): ReactElement
 
             if (group.collapsed) {
                 if (groupElement && contentWrapperElement && contentElement) {
-                    debugger;
                     contentWrapperElement.style.height = `${contentElement.getBoundingClientRect().height}px`;
                     groupElement.classList.add("widget-accordion-group-collapsing");
 
@@ -89,12 +88,12 @@ export default function AccordionGroup(props: AccordionGroupProps): ReactElement
             } else {
                 if (groupElement && contentWrapperElement && contentElement) {
                     groupElement.classList.remove("widget-accordion-group-collapsed");
-                    groupElement.classList.add("widget-accordion-group-collapsing");
-                    contentWrapperElement.style.height = `${contentElement.getBoundingClientRect().height}px`;
+                    groupElement.classList.add("widget-accordion-group-collapsing"); // TODO maybe switch order with above line
+                    contentWrapperElement.style.height = `${contentElement.getBoundingClientRect().height}px`; // DOM height still incorrect
                 }
             }
         }
-    }, [group, contentElement]);
+    }, [group, contentElement, contentWrapperElement, groupElement]);
 
     // useEffect(() => {
     //     if (group.collapsed !== previousCollapsedPropValue.current) {
@@ -154,6 +153,16 @@ export default function AccordionGroup(props: AccordionGroupProps): ReactElement
         }
     }, [group, accordionGroupsDispatch]);
 
+    // if (group.visible !== previousVisiblePropValue.current || group.collapsed !== previousCollapsedPropValue.current) {
+    //     previousVisiblePropValue.current = group.visible; // Don't update group collapsed, since that is done in the useEffect.
+    //     divContentMounted.current = group.visible && !group.collapsed;
+    // }
+
+    // visible & group expand
+    if ((!divContentMounted.current && !group.collapsed) || group.visible !== previousVisiblePropValue.current) {
+        divContentMounted.current = group.visible && !group.collapsed;
+    }
+
     if (!group.visible) {
         return null;
     }
@@ -189,7 +198,7 @@ export default function AccordionGroup(props: AccordionGroupProps): ReactElement
             </header>
             <div ref={updateContentWrapperElement} className={"widget-accordion-group-content-wrapper"}>
                 <div ref={updateContentElement} className={"widget-accordion-group-content"}>
-                    {group.content}
+                    {divContentMounted.current ? group.content : undefined}
                 </div>
             </div>
         </section>
