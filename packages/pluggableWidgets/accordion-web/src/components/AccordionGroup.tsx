@@ -68,9 +68,13 @@ export default function AccordionGroup(props: AccordionGroupProps): ReactElement
                 contentWrapperElement.style.height = `${contentElement.getBoundingClientRect().height}px`;
                 rootElement.classList.add("widget-accordion-group-collapsing");
 
-                window.requestAnimationFrame(() => {
+                setTimeout(() => {
                     contentWrapperElement.style.height = "";
-                }); // TODO Check how this behaves when we have multiple transitions with accordion groups: maybe removing height:0 from collapsing style will solve the issue
+                }, 200); // the animation is already ongoing. That's why we need to wait.
+
+                // window.requestAnimationFrame(() => {
+                //     contentWrapperElement.style.height = "";
+                // }); // TODO Check how this behaves when we have multiple transitions with accordion groups: maybe removing height:0 from collapsing style will solve the issue
             } else {
                 rootElement.classList.add("widget-accordion-group-collapsing");
                 rootElement.classList.remove("widget-accordion-group-collapsed");
