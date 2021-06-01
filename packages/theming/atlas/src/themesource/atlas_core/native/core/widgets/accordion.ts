@@ -43,31 +43,37 @@ export const com_mendix_widget_native_accordion_Accordion: AccordionType = {
             heading1: {
                 // All TextStyle properties are allowed
                 ...TextHeading1.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             heading2: {
                 // All TextStyle properties are allowed
                 ...TextHeading2.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             heading3: {
                 // All TextStyle properties are allowed
                 ...TextHeading3.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             heading4: {
                 // All TextStyle properties are allowed
                 ...TextHeading4.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             heading5: {
                 // All TextStyle properties are allowed
                 ...TextHeading5.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             heading6: {
                 // All TextStyle properties are allowed
                 ...TextHeading6.text,
+                fontWeight: "normal",
                 color: accordion.groupHeader.heading.color,
             },
             icon: {

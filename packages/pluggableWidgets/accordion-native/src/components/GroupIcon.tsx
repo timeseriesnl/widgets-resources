@@ -19,9 +19,9 @@ interface GroupIconProps {
 }
 
 export function GroupIcon({iconCollapsed, iconExpanded, isExpanded, style}: GroupIconProps): ReactElement | null {
-    const customIconsConfigured = iconCollapsed && iconCollapsed.value && iconExpanded && iconExpanded.value;
-    const customIconSource = iconCollapsed?.value;
-    const customExpandedIconSource = iconExpanded?.value;
+    const customIconsConfigured = (iconCollapsed && iconCollapsed.value) || (iconExpanded && iconExpanded.value);
+    const customIconSource = iconCollapsed?.value || {type: "glyph", iconClass: "glyphicon-chevron-down"};
+    const customExpandedIconSource = iconExpanded?.value || {type: "glyph", iconClass: "glyphicon-chevron-up"};
     const source = isExpanded ? customExpandedIconSource : customIconSource;
     const iconStyles = exclude(style, ["size", "color"]);
     const icon: GlyphIcon = {type: "glyph", iconClass: "glyphicon-chevron-down"};
