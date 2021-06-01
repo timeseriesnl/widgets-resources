@@ -35,7 +35,11 @@ export function Accordion(props: Props): ReactElement | null {
             group.groupAttribute?.setValue(!expanded);
         }
         executeAction(group.groupOnChange);
-        expanded ? collapseGroup(index) : expandGroup(index);
+        if (expanded) {
+            collapseGroup(index);
+        } else {
+            expandGroup(index);
+        }
     };
 
     const collapseGroup = (index: number): void => {

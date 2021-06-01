@@ -46,7 +46,7 @@ export function check(values: AccordionPreviewProps): Problem[] {
         });
     }
 
-    values.groups.map((group: GroupsPreviewType, index: number): void => {
+    values.groups.forEach((group: GroupsPreviewType, index: number): void => {
         if (group.headerRenderMode === "custom" && group.headerContent.widgetCount === 0) {
             errors.push({
                 property: `groups/${index + 1}/headerContent`,
