@@ -64,7 +64,7 @@ export function AccordionGroup({
                     ) : (
                         group.headerContent
                     )}
-                    {icon !== "no" && (
+                    {icon !== "no" && collapsible && (
                         <GroupIcon
                             isExpanded={isExpanded}
                             iconCollapsed={iconCollapsed}

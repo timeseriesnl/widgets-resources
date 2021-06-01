@@ -20,11 +20,11 @@ export function Accordion(props: Props): ReactElement | null {
                 group.groupCollapsed === "groupStartExpanded" ? [...acc, index] : acc,
             []
         );
-        initialExpandedGroups = props.collapsible
-            ? props.collapseBehavior === "singleExpanded"
-                ? [initialExpandedGroups[0]]
-                : initialExpandedGroups
-            : [];
+        initialExpandedGroups = !props.collapsible
+            ? initialExpandedGroups
+            : props.collapseBehavior === "singleExpanded"
+            ? [initialExpandedGroups[0]]
+            : initialExpandedGroups;
         setExpandedGroups(initialExpandedGroups);
         initialRender.current = true;
     }
