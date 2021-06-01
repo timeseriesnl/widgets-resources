@@ -11,8 +11,6 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -36,6 +34,8 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -44,9 +44,9 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -55,8 +55,6 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -96,8 +94,6 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -121,6 +117,8 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -132,8 +130,6 @@ exports[`Accordion in collapsible & multi expanded group mode renders correctly 
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -184,8 +180,6 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -209,6 +203,8 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -217,9 +213,9 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -228,8 +224,6 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -269,8 +263,6 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -294,6 +286,8 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -305,8 +299,6 @@ exports[`Accordion in collapsible & single expanded group mode hides the first a
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -357,8 +349,6 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -382,6 +372,8 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -390,9 +382,9 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -401,8 +393,6 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -442,8 +432,6 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -467,6 +455,8 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -478,8 +468,6 @@ exports[`Accordion in collapsible & single expanded group mode renders correctly
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -530,8 +518,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -555,6 +541,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           Object {
             "flexDirection": "row-reverse",
@@ -565,9 +553,9 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -576,8 +564,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -617,8 +603,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -642,6 +626,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           Object {
             "flexDirection": "row-reverse",
@@ -655,8 +641,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -707,8 +691,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -732,6 +714,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -740,9 +724,9 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -775,8 +759,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -800,6 +782,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the accor
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -846,8 +830,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -871,6 +853,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -879,9 +863,9 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -890,8 +874,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -931,8 +913,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -956,6 +936,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -967,8 +949,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -1019,8 +999,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -1044,6 +1022,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -1052,9 +1032,9 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -1063,8 +1043,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -1104,8 +1082,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -1129,6 +1105,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -1140,8 +1118,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -1192,8 +1168,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -1217,6 +1191,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -1225,9 +1201,9 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <Text
         style={
           Object {
-            "fontSize": 18,
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
+            "fontSize": 40,
+            "fontWeight": "600",
+            "lineHeight": 60,
           }
         }
       >
@@ -1236,8 +1212,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
@@ -1277,8 +1251,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
   <View
     style={
       Object {
-        "borderBottomWidth": 1,
-        "borderColor": "#CED0D3",
         "flex": 1,
       }
     }
@@ -1302,6 +1274,8 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "paddingHorizontal": 16,
+            "paddingVertical": 8,
           },
           false,
         ]
@@ -1313,8 +1287,6 @@ exports[`Accordion in collapsible & single expanded group mode renders the first
       <View
         style={
           Object {
-            "paddingHorizontal": 16,
-            "paddingVertical": 8,
             "transform": Array [
               Object {
                 "rotate": "0deg",
