@@ -11,7 +11,12 @@ export interface AccordionGroupStyle {
     container: ViewStyle;
     header: {
         container: ViewStyle,
-        text: TextStyle,
+        heading1: TextStyle,
+        heading2: TextStyle,
+        heading3: TextStyle,
+        heading4: TextStyle,
+        heading5: TextStyle,
+        heading6: TextStyle,
         icon: AccordionIconStyle
     };
     content: ViewStyle;
@@ -29,8 +34,6 @@ export const defaultAccordionStyle: AccordionStyle = {
     group: {
         container: {
             flex: 1,
-            borderBottomWidth: 1,
-            borderColor: "#CED0D3",
         },
         header: {
             container: {
@@ -38,19 +41,48 @@ export const defaultAccordionStyle: AccordionStyle = {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
-            },
-            text: {
-                fontSize: 18,
                 paddingVertical: 8,
                 paddingHorizontal: 16,
+            },
+            heading1: {
+                fontWeight: "600",
+                fontSize: 40,
+                lineHeight: 60
+            },
+            heading2: {
+                fontWeight: "600",
+                fontSize: 34,
+                lineHeight: 51
+            },
+            heading3: {
+                fontWeight: "600",
+                fontSize: 28,
+                lineHeight: 42
+            },
+            heading4: {
+                fontWeight: "600",
+                fontSize: 24,
+                lineHeight: 36
+            },
+            heading5: {
+                fontWeight: "600",
+                fontSize: 20,
+                lineHeight: 30
+            },
+            heading6: {
+                fontWeight: "600",
+                fontSize: 16,
+                lineHeight: 24
             },
             icon: {
                 size: 16,
                 color: "#000",
-                paddingVertical: 8,
-                paddingHorizontal: 16,
             },
         },
-        content: {},
+        content: {
+            paddingTop: 8,
+            paddingBottom: 16,
+            paddingHorizontal: 16,
+        },
     },
 };

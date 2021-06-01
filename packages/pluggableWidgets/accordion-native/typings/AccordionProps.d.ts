@@ -8,10 +8,13 @@ import { ActionValue, DynamicValue, EditableValue, NativeIcon } from "mendix";
 
 export type HeaderRenderModeEnum = "text" | "custom";
 
+export type HeaderTextRenderModeEnum = "heading1" | "heading2" | "heading3" | "heading4" | "heading5" | "heading6";
+
 export type GroupCollapsedEnum = "groupStartExpanded" | "groupStartCollapsed" | "groupStartDynamic";
 
 export interface GroupsType {
     headerRenderMode: HeaderRenderModeEnum;
+    headerTextRenderMode: HeaderTextRenderModeEnum;
     headerText: DynamicValue<string>;
     headerContent?: ReactNode;
     content?: ReactNode;
@@ -28,6 +31,7 @@ export type IconEnum = "right" | "left" | "no";
 
 export interface GroupsPreviewType {
     headerRenderMode: HeaderRenderModeEnum;
+    headerTextRenderMode: HeaderTextRenderModeEnum;
     headerText: string;
     headerContent: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
     content: { widgetCount: number; renderer: ComponentType<{caption?: string}> };

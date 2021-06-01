@@ -25,6 +25,18 @@
                                     <enumerationValue key="custom">Custom</enumerationValue>
                                 </enumerationValues>
                             </property>
+                            <property key="headerTextRenderMode" type="enumeration" defaultValue="heading5">
+                                <caption>Render mode</caption>
+                                <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="heading1">Heading 1</enumerationValue>
+                                    <enumerationValue key="heading2">Heading 2</enumerationValue>
+                                    <enumerationValue key="heading3">Heading 3</enumerationValue>
+                                    <enumerationValue key="heading4">Heading 4</enumerationValue>
+                                    <enumerationValue key="heading5">Heading 5</enumerationValue>
+                                    <enumerationValue key="heading6">Heading 6</enumerationValue>
+                                </enumerationValues>
+                            </property>
                             <property key="headerText" type="textTemplate">
                                 <caption>Text</caption>
                                 <description/>

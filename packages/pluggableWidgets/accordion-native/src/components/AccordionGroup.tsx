@@ -11,12 +11,12 @@ import { AccordionGroupStyle } from "../ui/Styles";
 
 export interface AccordionGroupProps {
     index: number;
+    collapsible: boolean;
     icon: IconEnum;
     iconCollapsed: DynamicValue<NativeIcon> | undefined;
     iconExpanded: DynamicValue<NativeIcon> | undefined;
     group: GroupsType;
     isExpanded: boolean;
-    collapseGroup: (index: number) => void;
     expandGroup: (index: number) => void;
     onPressGroupHeader: (group: GroupsType, index: number) => void;
     visible: DynamicValue<boolean>;
@@ -27,6 +27,7 @@ export interface AccordionGroupProps {
 export function AccordionGroup(
     {
         index,
+        collapsible,
         icon,
         iconCollapsed,
         iconExpanded,
@@ -53,13 +54,13 @@ export function AccordionGroup(
     }, [group.groupCollapsedDynamic]);
 
     return visible && (
-        <View key={index} style={style.container}>
+        <View style={style.container}>
             <Pressable
                 style={[style.header.container, icon === "left" && {flexDirection: "row-reverse"}]}
-                onPress={() => onPressGroupHeader(group, index)}
+                onPress={collapsible ? () => onPressGroupHeader(group, index) : null}
             >
                 {group.headerRenderMode === "text" ? (
-                    <Text style={style.header.text}>{group.headerText.value}</Text>
+                    <Text style={style.header[group.headerTextRenderMode]}>{group.headerText.value}</Text>
                 ) : group.headerContent}
                 {icon !== "no" && <GroupIcon
                     isExpanded={isExpanded}

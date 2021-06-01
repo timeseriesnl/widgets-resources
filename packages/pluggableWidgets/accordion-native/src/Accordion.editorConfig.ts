@@ -11,6 +11,7 @@ export function getProperties(
             hidePropertyIn(defaultProperties, values, "groups", index, "headerContent");
         } else {
             hidePropertyIn(defaultProperties, values, "groups", index, "headerText");
+            hidePropertyIn(defaultProperties, values, "groups", index, "headerTextRenderMode");
         }
 
         if (!values.collapsible) {
