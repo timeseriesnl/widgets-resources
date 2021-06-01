@@ -12,23 +12,23 @@ declare interface GlyphIcon {
 }
 
 interface GroupIconProps {
-    isExpanded: boolean,
-    iconCollapsed: DynamicValue<NativeIcon> | undefined,
-    iconExpanded: DynamicValue<NativeIcon> | undefined,
-    style: AccordionIconStyle
+    isExpanded: boolean;
+    iconCollapsed: DynamicValue<NativeIcon> | undefined;
+    iconExpanded: DynamicValue<NativeIcon> | undefined;
+    style: AccordionIconStyle;
 }
 
-export function GroupIcon({iconCollapsed, iconExpanded, isExpanded, style}: GroupIconProps): ReactElement | null {
+export function GroupIcon({ iconCollapsed, iconExpanded, isExpanded, style }: GroupIconProps): ReactElement | null {
     const customIconsConfigured = (iconCollapsed && iconCollapsed.value) || (iconExpanded && iconExpanded.value);
-    const customIconSource = iconCollapsed?.value || {type: "glyph", iconClass: "glyphicon-chevron-down"};
-    const customExpandedIconSource = iconExpanded?.value || {type: "glyph", iconClass: "glyphicon-chevron-up"};
+    const customIconSource = iconCollapsed?.value || { type: "glyph", iconClass: "glyphicon-chevron-down" };
+    const customExpandedIconSource = iconExpanded?.value || { type: "glyph", iconClass: "glyphicon-chevron-up" };
     const source = isExpanded ? customExpandedIconSource : customIconSource;
     const iconStyles = exclude(style, ["size", "color"]);
-    const icon: GlyphIcon = {type: "glyph", iconClass: "glyphicon-chevron-down"};
+    const icon: GlyphIcon = { type: "glyph", iconClass: "glyphicon-chevron-down" };
     const animatedValue = useRef(new Animated.Value(0)).current;
     const animatedRotation = animatedValue.interpolate({
         inputRange: [0, 1],
-        outputRange: ["0deg", "180deg"],
+        outputRange: ["0deg", "180deg"]
     });
 
     useEffect(() => {
@@ -36,20 +36,24 @@ export function GroupIcon({iconCollapsed, iconExpanded, isExpanded, style}: Grou
             toValue: isExpanded ? 1 : 0,
             duration: 200,
             easing: Easing.ease,
-            useNativeDriver: false,
+            useNativeDriver: false
         }).start();
     }, [isExpanded, animatedValue]);
 
     return customIconsConfigured ? (
         <View style={iconStyles}>
-            <Icon icon={source} size={style.size} color={style.color}/>
+            <Icon icon={source} size={style.size} color={style.color} />
         </View>
     ) : (
-               <Animated.View
-                   style={[iconStyles, {
-                       transform: [{rotate: animatedRotation}],
-                   }]}>
-                   <Icon icon={icon} size={style.size} color={style.color}/>
-               </Animated.View>
-           );
+        <Animated.View
+            style={[
+                iconStyles,
+                {
+                    transform: [{ rotate: animatedRotation }]
+                }
+            ]}
+        >
+            <Icon icon={icon} size={style.size} color={style.color} />
+        </Animated.View>
+    );
 }

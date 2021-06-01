@@ -18,70 +18,70 @@ export const accordionPrimary: AccordionType = {
     group: {
         container: {
             borderWidth: 1,
-            borderColor: brand.primary,
+            borderColor: brand.primary
         },
         header: {
             container: {
-                backgroundColor: brand.primary,
+                backgroundColor: brand.primary
             },
             heading1: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             heading2: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             heading3: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             heading4: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             heading5: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             heading6: {
-                color: fontDefaults.colorTitleLight,
+                color: fontDefaults.colorTitleLight
             },
             icon: {
-                color: fontDefaults.colorTitleLight,
-            },
-        },
-    },
+                color: fontDefaults.colorTitleLight
+            }
+        }
+    }
 };
 
 export const accordionSuccess: AccordionType = merge(accordionPrimary, {
     group: {
         container: {
-            borderColor: brand.success,
+            borderColor: brand.success
         },
         header: {
             container: {
-                backgroundColor: brand.success,
-            },
-        },
-    },
+                backgroundColor: brand.success
+            }
+        }
+    }
 });
 export const accordionWarning: AccordionType = merge(accordionPrimary, {
     group: {
         container: {
-            borderColor: brand.warning,
+            borderColor: brand.warning
         },
         header: {
             container: {
-                backgroundColor: brand.warning,
-            },
-        },
-    },
+                backgroundColor: brand.warning
+            }
+        }
+    }
 });
 export const accordionDanger: AccordionType = merge(accordionPrimary, {
     group: {
         container: {
-            borderColor: brand.danger,
+            borderColor: brand.danger
         },
         header: {
             container: {
-                backgroundColor: brand.danger,
-            },
-        },
-    },
+                backgroundColor: brand.danger
+            }
+        }
+    }
 });

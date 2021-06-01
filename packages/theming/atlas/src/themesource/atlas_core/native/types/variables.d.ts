@@ -339,25 +339,25 @@ export interface VariablesLayoutgrid {
 export interface VariablesAccordion {
     container: {
         backgroundColor: string;
-    },
+    };
     groupHeader: {
         container: {
             paddingVertical: number;
             paddingHorizontal: number;
-        },
-        heading: { 
-            color: string
+        };
+        heading: {
+            color: string;
         };
         icon: {
             size: number;
             color: string;
-        }
-    }
+        };
+    };
     groupContent: {
         paddingTop: number;
         paddingBottom: number;
         paddingHorizontal: number;
-    }
+    };
 }
 
 interface VariablesBadgeStyles {

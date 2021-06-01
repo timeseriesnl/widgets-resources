@@ -1,7 +1,6 @@
 import { Style } from "@mendix/piw-native-utils-internal";
 import { ViewStyle, TextStyle } from "react-native";
 
-
 export interface AccordionStyle extends Style {
     container: ViewStyle;
     group: AccordionGroupStyle;
@@ -10,14 +9,14 @@ export interface AccordionStyle extends Style {
 export interface AccordionGroupStyle {
     container: ViewStyle;
     header: {
-        container: ViewStyle,
-        heading1: TextStyle,
-        heading2: TextStyle,
-        heading3: TextStyle,
-        heading4: TextStyle,
-        heading5: TextStyle,
-        heading6: TextStyle,
-        icon: AccordionIconStyle
+        container: ViewStyle;
+        heading1: TextStyle;
+        heading2: TextStyle;
+        heading3: TextStyle;
+        heading4: TextStyle;
+        heading5: TextStyle;
+        heading6: TextStyle;
+        icon: AccordionIconStyle;
     };
     content: ViewStyle;
 }
@@ -29,11 +28,11 @@ export interface AccordionIconStyle extends ViewStyle {
 
 export const defaultAccordionStyle: AccordionStyle = {
     container: {
-        backgroundColor: "#FFF",
+        backgroundColor: "#FFF"
     },
     group: {
         container: {
-            flex: 1,
+            flex: 1
         },
         header: {
             container: {
@@ -42,7 +41,7 @@ export const defaultAccordionStyle: AccordionStyle = {
                 alignItems: "center",
                 justifyContent: "space-between",
                 paddingVertical: 8,
-                paddingHorizontal: 16,
+                paddingHorizontal: 16
             },
             heading1: {
                 fontWeight: "600",
@@ -76,13 +75,13 @@ export const defaultAccordionStyle: AccordionStyle = {
             },
             icon: {
                 size: 16,
-                color: "#000",
-            },
+                color: "#000"
+            }
         },
         content: {
             paddingTop: 8,
             paddingBottom: 16,
-            paddingHorizontal: 16,
-        },
-    },
+            paddingHorizontal: 16
+        }
+    }
 };

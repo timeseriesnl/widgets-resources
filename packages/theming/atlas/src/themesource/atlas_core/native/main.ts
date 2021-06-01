@@ -84,9 +84,7 @@ module.exports = [
     flex,
     spacing,
     !exclusionVariables.excludeAccordion ? widgetsAccordion : {},
-    !exclusionVariables.excludeAccordion && !exclusionVariables.excludeAccordionHelpers
-        ? helpersAccordion
-        : {},
+    !exclusionVariables.excludeAccordion && !exclusionVariables.excludeAccordionHelpers ? helpersAccordion : {},
     !exclusionVariables.excludeActivityIndicator ? widgetsActivityIndicator : {},
     !exclusionVariables.excludeActivityIndicator && !exclusionVariables.excludeActivityIndicatorHelpers
         ? helpersActivityIndicator

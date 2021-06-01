@@ -7,7 +7,7 @@ import { AccordionProps, GroupsType } from "../typings/AccordionProps";
 import { defaultAccordionStyle, AccordionStyle } from "./ui/Styles";
 import { AccordionGroup } from "./components/AccordionGroup";
 
-export type Props = AccordionProps<AccordionStyle>
+export type Props = AccordionProps<AccordionStyle>;
 
 export function Accordion(props: Props): ReactElement | null {
     const styles = flattenStyles(defaultAccordionStyle, props.style);
@@ -15,11 +15,16 @@ export function Accordion(props: Props): ReactElement | null {
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
 
     if (!initialRender.current) {
-        let initialExpandedGroups = props.groups.reduce((acc: number[], group: GroupsType, index: number): number[] => group.groupCollapsed === "groupStartExpanded" ? [...acc, index] : acc, []);
-        initialExpandedGroups = props.collapsible ?
-                                props.collapseBehavior === "singleExpanded" ?
-                                    [initialExpandedGroups[0]] : initialExpandedGroups :
-            [];
+        let initialExpandedGroups = props.groups.reduce(
+            (acc: number[], group: GroupsType, index: number): number[] =>
+                group.groupCollapsed === "groupStartExpanded" ? [...acc, index] : acc,
+            []
+        );
+        initialExpandedGroups = props.collapsible
+            ? props.collapseBehavior === "singleExpanded"
+                ? [initialExpandedGroups[0]]
+                : initialExpandedGroups
+            : [];
         setExpandedGroups(initialExpandedGroups);
         initialRender.current = true;
     }
@@ -42,7 +47,8 @@ export function Accordion(props: Props): ReactElement | null {
 
     return (
         <View style={styles.container}>
-            {props.groups.map((group: GroupsType, index: number): ReactElement => (
+            {props.groups.map(
+                (group: GroupsType, index: number): ReactElement => (
                     <AccordionGroup
                         key={index}
                         index={index}
@@ -57,7 +63,7 @@ export function Accordion(props: Props): ReactElement | null {
                         visible={group.visible}
                         style={styles.group}
                     />
-                ),
+                )
             )}
         </View>
     );

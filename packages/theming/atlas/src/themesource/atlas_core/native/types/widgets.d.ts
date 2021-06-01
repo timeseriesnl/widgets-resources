@@ -22,14 +22,14 @@ export interface AccordionType {
 export interface AccordionGroupType {
     container?: ViewStyle;
     header?: {
-        container?: ViewStyle,
-        heading1?: TextStyle,
-        heading2?: TextStyle,
-        heading3?: TextStyle,
-        heading4?: TextStyle,
-        heading5?: TextStyle,
-        heading6?: TextStyle,
-        icon?: AccordionIconType
+        container?: ViewStyle;
+        heading1?: TextStyle;
+        heading2?: TextStyle;
+        heading3?: TextStyle;
+        heading4?: TextStyle;
+        heading5?: TextStyle;
+        heading6?: TextStyle;
+        icon?: AccordionIconType;
     };
     content?: ViewStyle;
 }

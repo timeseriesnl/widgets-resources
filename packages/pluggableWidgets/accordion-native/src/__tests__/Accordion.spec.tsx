@@ -4,7 +4,6 @@ import { Text } from "react-native";
 import { Accordion, Props } from "../Accordion";
 import { fireEvent, render } from "react-native-testing-library";
 
-
 // jest.mock("react-native/Libraries/Utilities/Platform", () => ({
 //     OS: "ios",
 //     select: jest.fn(dict => dict.ios),
@@ -13,40 +12,40 @@ import { fireEvent, render } from "react-native-testing-library";
 const defaultProps: Props = {
     name: "accordion-test",
     style: [],
-    groups: [{
-        headerRenderMode: "text",
-        headerTextRenderMode: "heading1",
-        headerText: dynamicValue<string>("Header1"),
-        headerContent: undefined,
-        content: <Text>Content</Text>,
-        visible: dynamicValue<boolean>(true),
-        groupCollapsed: "groupStartExpanded",
-        groupCollapsedDynamic: dynamicValue<boolean>(undefined),
-        groupAttribute: new EditableValueBuilder<boolean>().withValue(undefined).build(),
-        groupOnChange: actionValue(),
-
-    }, {
-        headerRenderMode: "custom",
-        headerTextRenderMode: "heading1",
-        headerText: dynamicValue<string>(undefined),
-        headerContent: <Text>Header2</Text>,
-        content: <Text>Content</Text>,
-        visible: dynamicValue<boolean>(true),
-        groupCollapsed: "groupStartExpanded",
-        groupCollapsedDynamic: dynamicValue<boolean>(undefined),
-        groupAttribute: new EditableValueBuilder<boolean>().withValue(undefined).build(),
-        groupOnChange: actionValue(),
-
-    }],
+    groups: [
+        {
+            headerRenderMode: "text",
+            headerTextRenderMode: "heading1",
+            headerText: dynamicValue<string>("Header1"),
+            headerContent: undefined,
+            content: <Text>Content</Text>,
+            visible: dynamicValue<boolean>(true),
+            groupCollapsed: "groupStartExpanded",
+            groupCollapsedDynamic: dynamicValue<boolean>(undefined),
+            groupAttribute: new EditableValueBuilder<boolean>().withValue(undefined).build(),
+            groupOnChange: actionValue()
+        },
+        {
+            headerRenderMode: "custom",
+            headerTextRenderMode: "heading1",
+            headerText: dynamicValue<string>(undefined),
+            headerContent: <Text>Header2</Text>,
+            content: <Text>Content</Text>,
+            visible: dynamicValue<boolean>(true),
+            groupCollapsed: "groupStartExpanded",
+            groupCollapsedDynamic: dynamicValue<boolean>(undefined),
+            groupAttribute: new EditableValueBuilder<boolean>().withValue(undefined).build(),
+            groupOnChange: actionValue()
+        }
+    ],
     collapsible: true,
     collapseBehavior: "singleExpanded",
     icon: "right",
     iconExpanded: undefined,
-    iconCollapsed: undefined,
+    iconCollapsed: undefined
 };
 
 describe("Accordion", () => {
-
     describe("in collapsible & single expanded group mode", () => {
         it("renders correctly", () => {
             const accordion = render(<Accordion {...defaultProps} />);
@@ -54,12 +53,12 @@ describe("Accordion", () => {
         });
 
         it("renders the accordion groups icon on left side", () => {
-            const accordion = render(<Accordion {...defaultProps} icon={"left"}/>);
+            const accordion = render(<Accordion {...defaultProps} icon={"left"} />);
             expect(accordion.toJSON()).toMatchSnapshot();
         });
 
         it("renders the accordion groups without an icon", () => {
-            const accordion = render(<Accordion {...defaultProps} icon={"no"}/>);
+            const accordion = render(<Accordion {...defaultProps} icon={"no"} />);
             expect(accordion.toJSON()).toMatchSnapshot();
         });
 
@@ -102,5 +101,4 @@ describe("Accordion", () => {
             expect(accordion.toJSON()).toMatchSnapshot();
         });
     });
-
 });

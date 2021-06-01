@@ -8,7 +8,6 @@ import { AnimatedCollapsibleView } from "./CollapsibleView";
 import { GroupsType, IconEnum } from "../../typings/AccordionProps";
 import { AccordionGroupStyle } from "../ui/Styles";
 
-
 export interface AccordionGroupProps {
     index: number;
     collapsible: boolean;
@@ -23,22 +22,19 @@ export interface AccordionGroupProps {
     style: AccordionGroupStyle;
 }
 
-
-export function AccordionGroup(
-    {
-        index,
-        collapsible,
-        icon,
-        iconCollapsed,
-        iconExpanded,
-        group,
-        isExpanded,
-        expandGroup,
-        onPressGroupHeader,
-        visible,
-        style,
-    }: AccordionGroupProps): ReactElement | null {
-
+export function AccordionGroup({
+    index,
+    collapsible,
+    icon,
+    iconCollapsed,
+    iconExpanded,
+    group,
+    isExpanded,
+    expandGroup,
+    onPressGroupHeader,
+    visible,
+    style
+}: AccordionGroupProps): ReactElement | null {
     useEffect(() => {
         if (group.groupAttribute && isAvailable(group.groupAttribute) && group.groupAttribute?.value === false) {
             expandGroup(index);
@@ -46,32 +42,41 @@ export function AccordionGroup(
     }, [group.groupAttribute]);
 
     useEffect(() => {
-        if (group.groupCollapsedDynamic && isAvailable(group.groupCollapsedDynamic) &&
-            (group.groupCollapsed === "groupStartDynamic" && group.groupCollapsedDynamic?.value === false)
+        if (
+            group.groupCollapsedDynamic &&
+            isAvailable(group.groupCollapsedDynamic) &&
+            group.groupCollapsed === "groupStartDynamic" &&
+            group.groupCollapsedDynamic?.value === false
         ) {
             expandGroup(index);
         }
     }, [group.groupCollapsedDynamic]);
 
-    return visible && (
-        <View style={style.container}>
-            <Pressable
-                style={[style.header.container, icon === "left" && {flexDirection: "row-reverse"}]}
-                onPress={collapsible ? () => onPressGroupHeader(group, index) : null}
-            >
-                {group.headerRenderMode === "text" ? (
-                    <Text style={style.header[group.headerTextRenderMode]}>{group.headerText.value}</Text>
-                ) : group.headerContent}
-                {icon !== "no" && <GroupIcon
-                    isExpanded={isExpanded}
-                    iconCollapsed={iconCollapsed}
-                    iconExpanded={iconExpanded}
-                    style={style.header.icon}
-                />}
-            </Pressable>
-            <AnimatedCollapsibleView isExpanded={isExpanded} style={style.content}>
-                {group.content}
-            </AnimatedCollapsibleView>
-        </View>
+    return (
+        visible && (
+            <View style={style.container}>
+                <Pressable
+                    style={[style.header.container, icon === "left" && { flexDirection: "row-reverse" }]}
+                    onPress={collapsible ? () => onPressGroupHeader(group, index) : null}
+                >
+                    {group.headerRenderMode === "text" ? (
+                        <Text style={style.header[group.headerTextRenderMode]}>{group.headerText.value}</Text>
+                    ) : (
+                        group.headerContent
+                    )}
+                    {icon !== "no" && (
+                        <GroupIcon
+                            isExpanded={isExpanded}
+                            iconCollapsed={iconCollapsed}
+                            iconExpanded={iconExpanded}
+                            style={style.header.icon}
+                        />
+                    )}
+                </Pressable>
+                <AnimatedCollapsibleView isExpanded={isExpanded} style={style.content}>
+                    {group.content}
+                </AnimatedCollapsibleView>
+            </View>
+        )
     );
 }

@@ -1,22 +1,13 @@
 import { createElement, ReactElement, useState, useRef, useEffect, useCallback, ReactNode } from "react";
 import { Animated, Easing, View, ViewStyle, LayoutChangeEvent } from "react-native";
 
-
 interface CollapsibleViewProps {
     isExpanded: boolean;
     style: ViewStyle;
     children: ReactNode;
 }
 
-
-export function AnimatedCollapsibleView(
-    {
-        isExpanded,
-        style,
-        children,
-    }: CollapsibleViewProps,
-):
-    ReactElement {
+export function AnimatedCollapsibleView({ isExpanded, style, children }: CollapsibleViewProps): ReactElement {
     const startingHeight = 0;
     const animatedHeight = useRef(new Animated.Value(startingHeight)).current;
     const [fullHeight, setFullHeight] = useState(startingHeight);
@@ -27,7 +18,7 @@ export function AnimatedCollapsibleView(
             toValue: isExpanded ? fullHeight : startingHeight,
             duration: 300,
             easing: Easing.ease,
-            useNativeDriver: false,
+            useNativeDriver: false
         }).start();
     }, [isExpanded, fullHeight, animatedHeight]);
 
@@ -38,13 +29,13 @@ export function AnimatedCollapsibleView(
                 setFullHeight(e.nativeEvent.layout.height);
             }
         },
-        [isFullHeightCalculated.current],
+        [isFullHeightCalculated.current]
     );
 
     return (
         <Animated.View
             style={{
-                height: isFullHeightCalculated.current ? animatedHeight : undefined,
+                height: isFullHeightCalculated.current ? animatedHeight : undefined
             }}
             onLayout={onLayout}
         >
