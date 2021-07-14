@@ -145,6 +145,7 @@ class Calendar extends Component<CalendarProps, State> {
 
         const props = {
             localizer,
+            culture: this.getCulture(),
             events: this.props.events,
             allDayAccessor: this.allDayAccessor,
             components: {
@@ -204,7 +205,7 @@ class Calendar extends Component<CalendarProps, State> {
     private dayGetter = (date: Date) => {
         return this.props.disabledTill && this.props.disabledTill !== new Date("") && this.props.disabledTill > date
             ? { className: "rbc-disabled abc", style: {} }
-            : void 0;
+            : 0;
     };
 
     private onRangeChange = (date: object) => {
