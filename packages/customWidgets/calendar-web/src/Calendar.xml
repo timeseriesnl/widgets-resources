@@ -99,6 +99,22 @@
                 <attributeType name="DateTime"/>
             </attributeTypes>
         </property>
+        <property key="disabledTill" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Disabled till</caption>
+            <category>Data source</category>
+            <description />
+            <attributeTypes>
+                <attributeType name="DateTime"/>
+            </attributeTypes>
+        </property>
+        <property key="savePeriod" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Save period</caption>
+            <category>Data source</category>
+            <description>Store the selected period when navigation through multiple pages</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
         <property key="view" type="enumeration" defaultValue="standard">
             <caption>View</caption>
             <category>View</category>

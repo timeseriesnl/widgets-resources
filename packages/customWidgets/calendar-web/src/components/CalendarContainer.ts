@@ -2,7 +2,7 @@ import { Component, createElement, ReactChild, ReactNode } from "react";
 
 import { Calendar, CalendarEvent } from "./Calendar";
 import { fetchData } from "../utils/data";
-import { Container } from "../utils/namespaces";
+import { Container, Style } from "../utils/namespaces";
 import dateMath from "date-arithmetic";
 import moment from "moment";
 import { validateCustomFormats, validateProps } from "../utils/validation";
@@ -19,6 +19,8 @@ export interface CalendarContainerState {
     eventColor: string;
     loading: boolean;
     startPosition: Date;
+    disabledTillDate?: Date;
+    defaultView: Style.View;
 }
 
 interface ViewDate {
@@ -38,7 +40,8 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         eventCache: [],
         eventColor: "",
         loading: true,
-        startPosition: new Date()
+        startPosition: new Date(),
+        defaultView: "day"
     };
 
     constructor(props: Container.CalendarContainerProps) {
@@ -72,13 +75,14 @@ export default class CalendarContainer extends Component<Container.CalendarConta
                 heightUnit: this.props.heightUnit,
                 messages: this.setCustomViews(),
                 events: this.state.events,
-                defaultView: this.props.defaultView,
+                defaultView: this.state.defaultView,
                 startPosition: this.state.startPosition,
                 loading: this.state.loading,
                 style: parseStyle(this.props.style),
                 viewOption: this.props.view,
                 width: this.props.width,
                 widthUnit: this.props.widthUnit,
+                onViewChangeAction: this.savePeriod,
                 onRangeChangeAction: this.onRangeChange,
                 onSelectEventAction: !readOnly ? this.handleOnClickEvent : undefined,
                 onEventResizeAction: !readOnly ? this.handleOnChangeEvent : undefined,
@@ -151,13 +155,29 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         return new Date();
     };
 
+    private getSavedPeriod = async (mxObject: MxObject): Promise<Style.View> => {
+        if (mxObject && this.props.savePeriod) {
+            let savePeriod;
+            try {
+                savePeriod = await this.extractAttributeValue<Style.View>(mxObject, this.props.savePeriod);
+            } catch (error) {
+                window.mx.ui.error(`Unable to fetch save period attribute value: ${error.message}`);
+            }
+            return savePeriod || this.props.defaultView;
+        }
+
+        return this.props.defaultView;
+    };
+
     private loadEvents = async (mxObject: MxObject): Promise<void> => {
         this.subscriptionEventHandles.forEach(window.mx.data.unsubscribe);
         this.subscriptionEventHandles = [];
         if (!mxObject) {
             return;
         }
+        await this.setPeriod(mxObject);
         await this.setViewDates(mxObject);
+
         const guid = mxObject ? mxObject.getGuid() : "";
         if (this.props.dataSource === "context" && mxObject) {
             this.setCalendarEvents([mxObject]);
@@ -197,8 +217,16 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         }
     };
 
+    private async setPeriod(mxObject: MxObject): Promise<void> {
+        const period = await this.getSavedPeriod(mxObject);
+        this.setState({
+            defaultView: period || this.props.defaultView
+        });
+    }
+
     private async setViewDates(mxObject: MxObject): Promise<void> {
         const startPosition = await this.getStartPosition(mxObject);
+
         if (
             this.props.executeOnViewChange &&
             mxObject.get(this.props.viewStartAttribute) === "" &&
@@ -206,10 +234,10 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         ) {
             const viewStart = new Date(startPosition.getFullYear(), startPosition.getMonth(), 1);
             const viewEnd = new Date(startPosition.getFullYear(), startPosition.getMonth() + 1, 0);
-            if (this.props.defaultView === "day") {
+            if (this.state.defaultView === "day") {
                 mxObject.set(this.props.viewStartAttribute, dateMath.startOf(startPosition, "day"));
                 mxObject.set(this.props.viewEndAttribute, dateMath.endOf(startPosition, "day"));
-            } else if (this.props.defaultView === "week" || this.props.defaultView === "work_week") {
+            } else if (this.state.defaultView === "week" || this.state.defaultView === "work_week") {
                 mxObject.set(
                     this.props.viewStartAttribute,
                     dateMath.startOf(startPosition, "week", [window.mx.session.sessionData.locale.firstDayOfWeek])
@@ -219,7 +247,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
                     this.props.viewEndAttribute,
                     dateMath.endOf(
                         new Date(
-                            startPosition.setDate(startPosition.getDate() + (this.props.defaultView === "week" ? 6 : 4))
+                            startPosition.setDate(startPosition.getDate() + (this.state.defaultView === "week" ? 6 : 4))
                         ),
                         "day"
                     )
@@ -402,6 +430,12 @@ export default class CalendarContainer extends Component<Container.CalendarConta
                 datePattern
             })} - ${window.mx.parser.formatValue(dateRange.end, "datetime", { datePattern })}`;
         };
+    };
+
+    private savePeriod = async (period: string): Promise<void> => {
+        if (this.props.savePeriod && this.props.mxObject) {
+            this.props.mxObject.set(this.props.savePeriod, period);
+        }
     };
 
     private onRangeChange = async (date: ViewDate): Promise<void> => {
