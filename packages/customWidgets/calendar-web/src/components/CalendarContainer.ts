@@ -19,7 +19,6 @@ export interface CalendarContainerState {
     eventColor: string;
     loading: boolean;
     startPosition: Date;
-    disabledTillDate?: Date;
     defaultView: Style.View;
 }
 
