@@ -145,7 +145,6 @@ class Calendar extends Component<CalendarProps, State> {
 
         const props = {
             localizer,
-            culture: this.getCulture(),
             events: this.props.events,
             allDayAccessor: this.allDayAccessor,
             components: {
