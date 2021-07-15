@@ -88,6 +88,7 @@ export namespace Container {
         popup: boolean;
         editable: string;
         view: Views;
+        preventFastClick: string;
     }
 
     type functionType = (date: Date) => string;
