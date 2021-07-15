@@ -203,7 +203,7 @@ class Calendar extends Component<CalendarProps, State> {
 
     private dayGetter = (date: Date) => {
         return this.props.disabledTill && this.props.disabledTill !== new Date("") && this.props.disabledTill > date
-            ? { className: "rbc-disabled abc", style: {} }
+            ? { className: "rbc-disabled", style: {} }
             : 0;
     };
 
