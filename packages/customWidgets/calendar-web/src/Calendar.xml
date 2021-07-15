@@ -99,8 +99,8 @@
                 <attributeType name="DateTime"/>
             </attributeTypes>
         </property>
-        <property key="disabledTill" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
-            <caption>Disabled till</caption>
+        <property key="disabledTillDate" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Disabled till date</caption>
             <category>Data source</category>
             <description />
             <attributeTypes>

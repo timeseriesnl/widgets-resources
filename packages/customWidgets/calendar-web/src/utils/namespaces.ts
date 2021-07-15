@@ -78,7 +78,7 @@ export namespace Container {
         executeOnViewChange: boolean;
         newEventContextPath: string;
         startDateAttribute: string;
-        disabledTill: string;
+        disabledTillDate: string;
         viewStartAttribute: string;
         viewEndAttribute: string;
         dataSource: DataSource;

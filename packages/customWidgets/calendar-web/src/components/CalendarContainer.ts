@@ -153,15 +153,15 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         return new Date();
     };
 
-    private getDisabledTill = async (mxObject: MxObject): Promise<Date> => {
-        if (mxObject && this.props.disabledTill) {
-            let disabledTill;
+    private getDisabledTillDate = async (mxObject: MxObject): Promise<Date> => {
+        if (mxObject && this.props.disabledTillDate) {
+            let disabledTillDate;
             try {
-                disabledTill = await this.extractAttributeValue<number>(mxObject, this.props.disabledTill);
+                disabledTillDate = await this.extractAttributeValue<number>(mxObject, this.props.disabledTillDate);
             } catch (error) {
                 window.mx.ui.error(`Unable to fetch start date attribute value: ${error.message}`);
             }
-            return disabledTill ? new Date(disabledTill) : new Date();
+            return disabledTillDate ? new Date(disabledTillDate) : new Date();
         }
 
         return new Date();
@@ -173,7 +173,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         if (!mxObject) {
             return;
         }
-        await this.setDisabledTill(mxObject);
+        await this.setDisabledTillDate(mxObject);
         await this.setViewDates(mxObject);
         const guid = mxObject ? mxObject.getGuid() : "";
         if (this.props.dataSource === "context" && mxObject) {
@@ -214,8 +214,8 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         }
     };
 
-    private async setDisabledTill(mxObject: MxObject): Promise<void> {
-        const disabledTillDate = await this.getDisabledTill(mxObject);
+    private async setDisabledTillDate(mxObject: MxObject): Promise<void> {
+        const disabledTillDate = await this.getDisabledTillDate(mxObject);
         if (disabledTillDate) {
             this.setState({
                 disabledTillDate
