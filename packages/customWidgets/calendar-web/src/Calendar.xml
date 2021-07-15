@@ -99,10 +99,10 @@
                 <attributeType name="DateTime"/>
             </attributeTypes>
         </property>
-        <property key="savePeriod" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
-            <caption>Save period</caption>
+        <property key="selectedView" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Selected View</caption>
             <category>Data source</category>
-            <description>Store the selected period when navigation through multiple pages</description>
+            <description>Set the selected period when navigation through multiple pages</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>

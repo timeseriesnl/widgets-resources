@@ -88,7 +88,7 @@ export namespace Container {
         popup: boolean;
         editable: string;
         view: Views;
-        savePeriod: string;
+        selectedView: string;
     }
 
     type functionType = (date: Date) => string;

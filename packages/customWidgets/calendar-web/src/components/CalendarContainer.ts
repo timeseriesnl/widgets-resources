@@ -81,7 +81,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
                 viewOption: this.props.view,
                 width: this.props.width,
                 widthUnit: this.props.widthUnit,
-                onViewChangeAction: this.savePeriod,
+                onViewChangeAction: this.setSelectedPeriod,
                 onRangeChangeAction: this.onRangeChange,
                 onSelectEventAction: !readOnly ? this.handleOnClickEvent : undefined,
                 onEventResizeAction: !readOnly ? this.handleOnChangeEvent : undefined,
@@ -154,15 +154,15 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         return new Date();
     };
 
-    private getSavedPeriod = async (mxObject: MxObject): Promise<Style.View> => {
-        if (mxObject && this.props.savePeriod) {
-            let savePeriod;
+    private getSelectedPeriod = async (mxObject: MxObject): Promise<Style.View> => {
+        if (mxObject && this.props.selectedView) {
+            let selected;
             try {
-                savePeriod = await this.extractAttributeValue<Style.View>(mxObject, this.props.savePeriod);
+                selected = await this.extractAttributeValue<Style.View>(mxObject, this.props.selectedView);
             } catch (error) {
                 window.mx.ui.error(`Unable to fetch save period attribute value: ${error.message}`);
             }
-            return savePeriod || this.props.defaultView;
+            return selected || this.props.defaultView;
         }
 
         return this.props.defaultView;
@@ -217,7 +217,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
     };
 
     private async setPeriod(mxObject: MxObject): Promise<void> {
-        const period = await this.getSavedPeriod(mxObject);
+        const period = await this.getSelectedPeriod(mxObject);
         this.setState({
             defaultView: period || this.props.defaultView
         });
@@ -431,9 +431,9 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         };
     };
 
-    private savePeriod = async (period: string): Promise<void> => {
-        if (this.props.savePeriod && this.props.mxObject) {
-            this.props.mxObject.set(this.props.savePeriod, period);
+    private setSelectedPeriod = async (period: string): Promise<void> => {
+        if (this.props.selectedView && this.props.mxObject) {
+            this.props.mxObject.set(this.props.selectedView, period);
         }
     };
 
