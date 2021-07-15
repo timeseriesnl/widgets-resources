@@ -159,7 +159,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
             try {
                 disabledTillDate = await this.extractAttributeValue<number>(mxObject, this.props.disabledTillDate);
             } catch (error) {
-                window.mx.ui.error(`Unable to fetch start date attribute value: ${error.message}`);
+                window.mx.ui.error(`Unable to fetch disable till date attribute value: ${error.message}`);
             }
             return disabledTillDate ? new Date(disabledTillDate) : new Date();
         }
