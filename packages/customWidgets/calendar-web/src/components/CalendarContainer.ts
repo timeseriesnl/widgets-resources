@@ -20,6 +20,7 @@ export interface CalendarContainerState {
     loading: boolean;
     startPosition: Date;
     defaultView: Style.View;
+    disabledTillDate?: Date;
 }
 
 interface ViewDate {
@@ -76,6 +77,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
                 events: this.state.events,
                 defaultView: this.state.defaultView,
                 startPosition: this.state.startPosition,
+                disabledTill: this.state.disabledTillDate,
                 loading: this.state.loading,
                 style: parseStyle(this.props.style),
                 viewOption: this.props.view,
@@ -168,12 +170,27 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         return this.props.defaultView;
     };
 
+    private getDisabledTillDate = async (mxObject: MxObject): Promise<Date> => {
+        if (mxObject && this.props.disabledTillDate) {
+            let disabledTillDate;
+            try {
+                disabledTillDate = await this.extractAttributeValue<number>(mxObject, this.props.disabledTillDate);
+            } catch (error) {
+                window.mx.ui.error(`Unable to fetch disable till date attribute value: ${error.message}`);
+            }
+            return disabledTillDate ? new Date(disabledTillDate) : new Date();
+        }
+
+        return new Date();
+    };
+
     private loadEvents = async (mxObject: MxObject): Promise<void> => {
         this.subscriptionEventHandles.forEach(window.mx.data.unsubscribe);
         this.subscriptionEventHandles = [];
         if (!mxObject) {
             return;
         }
+        await this.setDisabledTillDate(mxObject);
         await this.setPeriod(mxObject);
         await this.setViewDates(mxObject);
 
@@ -221,6 +238,15 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         this.setState({
             defaultView: period || this.props.defaultView
         });
+    }
+
+    private async setDisabledTillDate(mxObject: MxObject): Promise<void> {
+        const disabledTillDate = await this.getDisabledTillDate(mxObject);
+        if (disabledTillDate) {
+            this.setState({
+                disabledTillDate
+            });
+        }
     }
 
     private async setViewDates(mxObject: MxObject): Promise<void> {

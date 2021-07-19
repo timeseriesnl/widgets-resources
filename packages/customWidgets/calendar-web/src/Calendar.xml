@@ -99,6 +99,14 @@
                 <attributeType name="DateTime"/>
             </attributeTypes>
         </property>
+        <property key="disabledTillDate" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Disabled till date</caption>
+            <category>Data source</category>
+            <description />
+            <attributeTypes>
+                <attributeType name="DateTime"/>
+            </attributeTypes>
+        </property>
         <property key="selectedView" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
             <caption>Selected View</caption>
             <category>Data source</category>
