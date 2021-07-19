@@ -19,6 +19,7 @@ export interface CalendarContainerState {
     eventColor: string;
     loading: boolean;
     startPosition: Date;
+    isExecuting: boolean;
 }
 
 interface ViewDate {
@@ -38,7 +39,8 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         eventCache: [],
         eventColor: "",
         loading: true,
-        startPosition: new Date()
+        startPosition: new Date(),
+        isExecuting: false
     };
 
     constructor(props: Container.CalendarContainerProps) {
@@ -149,20 +151,6 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         }
 
         return new Date();
-    };
-
-    private getPreventFastClick = async (mxObject: MxObject): Promise<boolean> => {
-        if (mxObject && this.props.preventFastClick) {
-            let prevent;
-            try {
-                prevent = await this.extractAttributeValue<boolean>(mxObject, this.props.preventFastClick);
-            } catch (error) {
-                window.mx.ui.error(`Unable to fetch preventFastClick attribute value: ${error.message}`);
-            }
-            return prevent || false;
-        }
-
-        return false;
     };
 
     private loadEvents = async (mxObject: MxObject): Promise<void> => {
@@ -418,12 +406,6 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         };
     };
 
-    private setPreventFastClick = async (prevent: boolean): Promise<void> => {
-        if (this.props.preventFastClick && this.props.mxObject) {
-            this.props.mxObject.set(this.props.preventFastClick, prevent);
-        }
-    };
-
     private onRangeChange = async (date: ViewDate): Promise<void> => {
         if (!this.props.executeOnViewChange) {
             return;
@@ -449,18 +431,17 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         await this.loadEvents(this.props.mxObject);
     };
 
-    private handleOnClickEvent = async (eventInfo: Container.EventInfo) => {
-        const prevent = await this.getPreventFastClick(this.props.mxObject);
-
-        if (prevent) {
+    private handleOnClickEvent = (eventInfo: Container.EventInfo) => {
+        if (this.state.isExecuting && this.props.preventFastClick) {
             return;
         }
 
-        await this.setPreventFastClick(true);
-        mx.data.get({
-            guid: eventInfo.guid,
-            callback: this.executeEventAction,
-            error: error => window.mx.ui.error(`Error while executing action: ${error.message}`)
+        this.setState({ isExecuting: true }, () => {
+            mx.data.get({
+                guid: eventInfo.guid,
+                callback: this.executeEventAction,
+                error: error => window.mx.ui.error(`Error while executing action: ${error.message}`)
+            });
         });
     };
 
@@ -468,6 +449,9 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         const { onClickEvent, onClickMicroflow, mxform, onClickNanoflow } = this.props;
         if (mxObject) {
             this.executeAction(mxObject, onClickEvent, onClickMicroflow, mxform, onClickNanoflow);
+            setTimeout(() => {
+                this.setState({ isExecuting: false });
+            }, 200);
         }
     };
 

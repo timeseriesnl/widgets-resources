@@ -78,7 +78,7 @@
                 <attributeType name="String" />
             </attributeTypes>
         </property>
-        <property key="executeOnViewChange" type="boolean" defaultValue="false">
+        <property key="executeOnViewChange" type="boolean" defaultValue="true">
             <caption>Refresh data source on view change</caption>
             <category>Data source</category>
             <description>For data source microflow, enable to retrieve a sub set of large data set based on view start and end attribute</description>
@@ -97,14 +97,6 @@
             <description>The date on which the calendar view ends, will be updated with `Refresh data source` before the view changes</description>
             <attributeTypes>
                 <attributeType name="DateTime"/>
-            </attributeTypes>
-        </property>
-        <property key="preventFastClick" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
-            <caption>Prevent Fast Click</caption>
-            <category>Data source</category>
-            <description />
-            <attributeTypes>
-                <attributeType name="Boolean"/>
             </attributeTypes>
         </property>
         <property key="view" type="enumeration" defaultValue="standard">
@@ -299,6 +291,11 @@
             <category>Events</category>
             <description/>
             <returnType type="Void" />
+        </property>
+        <property key="preventFastClick" type="boolean" defaultValue="false">
+            <caption>Prevent Fast Click</caption>
+            <category>Events</category>
+            <description>Enable/Disable prevent fast clicking</description>
         </property>
         <property key="onClickNanoflow" type="nanoflow" required="false" entityProperty="eventEntity">
             <caption>On click nanoflow</caption>
