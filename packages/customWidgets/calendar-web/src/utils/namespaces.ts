@@ -78,6 +78,7 @@ export namespace Container {
         executeOnViewChange: boolean;
         newEventContextPath: string;
         startDateAttribute: string;
+        disabledTillDate: string;
         viewStartAttribute: string;
         viewEndAttribute: string;
         dataSource: DataSource;
@@ -88,6 +89,7 @@ export namespace Container {
         popup: boolean;
         editable: string;
         view: Views;
+        selectedView: string;
         disabledDuringAction: boolean;
     }
 

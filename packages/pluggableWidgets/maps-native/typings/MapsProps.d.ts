@@ -21,11 +21,11 @@ export interface MarkersType {
     iconColor: string;
 }
 
-export type LocationTypeEnum = "address" | "latlng";
+export type LocationDynamicTypeEnum = "address" | "latlng";
 
 export interface DynamicMarkersType {
     markersDS?: ListValue;
-    locationType: LocationTypeEnum;
+    locationDynamicType: LocationDynamicTypeEnum;
     address?: ListAttributeValue<string>;
     latitude?: ListAttributeValue<Big>;
     longitude?: ListAttributeValue<Big>;
@@ -61,8 +61,8 @@ export interface MarkersPreviewType {
 }
 
 export interface DynamicMarkersPreviewType {
-    markersDS: {} | null;
-    locationType: LocationTypeEnum;
+    markersDS: {} | { type: string } | null;
+    locationDynamicType: LocationDynamicTypeEnum;
     address: string;
     latitude: string;
     longitude: string;

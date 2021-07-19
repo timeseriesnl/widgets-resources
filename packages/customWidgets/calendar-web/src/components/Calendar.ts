@@ -31,6 +31,7 @@ export interface CalendarProps {
     defaultView: Style.View;
     loading?: boolean;
     startPosition?: Date;
+    disabledTill?: Date;
     messages: {};
     editable: string;
     titleFormat?: (date: Date) => void;
@@ -42,6 +43,7 @@ export interface CalendarProps {
     viewOption: "custom" | "standard";
     width: number;
     widthUnit: Style.WidthUnitType;
+    onViewChangeAction?: (period: string) => void;
     onRangeChangeAction?: (date: object) => void;
     onSelectEventAction?: (eventInfo: object) => void;
     onEventResizeAction?: (eventInfo: object) => void;
@@ -144,6 +146,7 @@ class Calendar extends Component<CalendarProps, State> {
 
         const props = {
             localizer,
+            onView: this.onView,
             events: this.props.events,
             allDayAccessor: this.allDayAccessor,
             components: {
@@ -162,6 +165,7 @@ class Calendar extends Component<CalendarProps, State> {
             onRangeChange: this.onRangeChange,
             onSelectEvent: this.onSelectEvent,
             onSelectSlot: this.onSelectSlot,
+            dayPropGetter: this.dayGetter,
             views: ["month", "day", "week", "work_week", "month", "agenda"]
         };
 
@@ -199,9 +203,21 @@ class Calendar extends Component<CalendarProps, State> {
 
     private eventColor = (events: CalendarEvent) => ({ style: { backgroundColor: events.color } });
 
+    private dayGetter = (date: Date) => {
+        return this.props.disabledTill && this.props.disabledTill !== new Date("") && this.props.disabledTill > date
+            ? { className: "rbc-disabled", style: {} }
+            : 0;
+    };
+
     private onRangeChange = (date: object) => {
         if (this.props.onRangeChangeAction && date) {
             this.props.onRangeChangeAction(date);
+        }
+    };
+
+    private onView = (period: string) => {
+        if (this.props.onViewChangeAction && period) {
+            this.props.onViewChangeAction(period);
         }
     };
 
