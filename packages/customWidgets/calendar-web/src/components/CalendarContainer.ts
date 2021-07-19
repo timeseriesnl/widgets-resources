@@ -432,7 +432,7 @@ export default class CalendarContainer extends Component<Container.CalendarConta
     };
 
     private handleOnClickEvent = (eventInfo: Container.EventInfo) => {
-        if (this.state.isExecuting && this.props.preventFastClick) {
+        if (this.state.isExecuting && this.props.disabledDuringAction) {
             return;
         }
 
