@@ -31,6 +31,7 @@ export interface CalendarProps {
     defaultView: Style.View;
     loading?: boolean;
     startPosition?: Date;
+    disabledTill?: Date;
     messages: {};
     editable: string;
     titleFormat?: (date: Date) => void;
@@ -162,6 +163,7 @@ class Calendar extends Component<CalendarProps, State> {
             onRangeChange: this.onRangeChange,
             onSelectEvent: this.onSelectEvent,
             onSelectSlot: this.onSelectSlot,
+            dayPropGetter: this.dayGetter,
             views: ["month", "day", "week", "work_week", "month", "agenda"]
         };
 
@@ -198,6 +200,12 @@ class Calendar extends Component<CalendarProps, State> {
     private allDayAccessor = (event: Container.ViewOptions) => event.allDay;
 
     private eventColor = (events: CalendarEvent) => ({ style: { backgroundColor: events.color } });
+
+    private dayGetter = (date: Date) => {
+        return this.props.disabledTill && this.props.disabledTill !== new Date("") && this.props.disabledTill > date
+            ? { className: "rbc-disabled", style: {} }
+            : 0;
+    };
 
     private onRangeChange = (date: object) => {
         if (this.props.onRangeChangeAction && date) {
