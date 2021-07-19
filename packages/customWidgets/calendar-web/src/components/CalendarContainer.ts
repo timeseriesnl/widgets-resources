@@ -440,7 +440,10 @@ export default class CalendarContainer extends Component<Container.CalendarConta
             mx.data.get({
                 guid: eventInfo.guid,
                 callback: this.executeEventAction,
-                error: error => window.mx.ui.error(`Error while executing action: ${error.message}`)
+                error: error => {
+                    this.setState({ isExecuting: false });
+                    window.mx.ui.error(`Error while executing action: ${error.message}`);
+                }
             });
         });
     };
