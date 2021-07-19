@@ -107,6 +107,14 @@
                 <attributeType name="DateTime"/>
             </attributeTypes>
         </property>
+        <property key="selectedView" type="attribute" isPath="optional" pathType="reference" required="false" allowNonPersistableEntities="true">
+            <caption>Selected View</caption>
+            <category>Data source</category>
+            <description>Set the selected period when navigation through multiple pages</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
         <property key="view" type="enumeration" defaultValue="standard">
             <caption>View</caption>
             <category>View</category>

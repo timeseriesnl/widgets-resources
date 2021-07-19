@@ -89,6 +89,7 @@ export namespace Container {
         popup: boolean;
         editable: string;
         view: Views;
+        selectedView: string;
     }
 
     type functionType = (date: Date) => string;

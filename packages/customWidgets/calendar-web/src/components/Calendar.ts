@@ -43,6 +43,7 @@ export interface CalendarProps {
     viewOption: "custom" | "standard";
     width: number;
     widthUnit: Style.WidthUnitType;
+    onViewChangeAction?: (period: string) => void;
     onRangeChangeAction?: (date: object) => void;
     onSelectEventAction?: (eventInfo: object) => void;
     onEventResizeAction?: (eventInfo: object) => void;
@@ -145,6 +146,7 @@ class Calendar extends Component<CalendarProps, State> {
 
         const props = {
             localizer,
+            onView: this.onView,
             events: this.props.events,
             allDayAccessor: this.allDayAccessor,
             components: {
@@ -210,6 +212,12 @@ class Calendar extends Component<CalendarProps, State> {
     private onRangeChange = (date: object) => {
         if (this.props.onRangeChangeAction && date) {
             this.props.onRangeChangeAction(date);
+        }
+    };
+
+    private onView = (period: string) => {
+        if (this.props.onViewChangeAction && period) {
+            this.props.onViewChangeAction(period);
         }
     };
 
