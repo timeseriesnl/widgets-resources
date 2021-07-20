@@ -308,6 +308,11 @@
             <description/>
             <returnType type="Void" />
         </property>
+        <property key="disabledDuringAction" type="boolean" defaultValue="true">
+            <caption>Disabled during action</caption>
+            <category>Events</category>
+            <description>Enable/Disable prevent fast clicking</description>
+        </property>
         <property key="onClickNanoflow" type="nanoflow" required="false" entityProperty="eventEntity">
             <caption>On click nanoflow</caption>
             <category>Events</category>

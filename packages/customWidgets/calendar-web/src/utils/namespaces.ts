@@ -90,6 +90,7 @@ export namespace Container {
         editable: string;
         view: Views;
         selectedView: string;
+        disabledDuringAction: boolean;
     }
 
     type functionType = (date: Date) => string;

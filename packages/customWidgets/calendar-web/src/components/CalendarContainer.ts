@@ -21,6 +21,7 @@ export interface CalendarContainerState {
     startPosition: Date;
     defaultView: Style.View;
     disabledTillDate?: Date;
+    isExecuting: boolean;
 }
 
 interface ViewDate {
@@ -41,7 +42,8 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         eventColor: "",
         loading: true,
         startPosition: new Date(),
-        defaultView: "day"
+        defaultView: "day",
+        isExecuting: false
     };
 
     constructor(props: Container.CalendarContainerProps) {
@@ -489,10 +491,19 @@ export default class CalendarContainer extends Component<Container.CalendarConta
     };
 
     private handleOnClickEvent = (eventInfo: Container.EventInfo) => {
-        mx.data.get({
-            guid: eventInfo.guid,
-            callback: this.executeEventAction,
-            error: error => window.mx.ui.error(`Error while executing action: ${error.message}`)
+        if (this.state.isExecuting && this.props.disabledDuringAction) {
+            return;
+        }
+
+        this.setState({ isExecuting: true }, () => {
+            mx.data.get({
+                guid: eventInfo.guid,
+                callback: this.executeEventAction,
+                error: error => {
+                    this.setState({ isExecuting: false });
+                    window.mx.ui.error(`Error while executing action: ${error.message}`);
+                }
+            });
         });
     };
 
@@ -500,6 +511,9 @@ export default class CalendarContainer extends Component<Container.CalendarConta
         const { onClickEvent, onClickMicroflow, mxform, onClickNanoflow } = this.props;
         if (mxObject) {
             this.executeAction(mxObject, onClickEvent, onClickMicroflow, mxform, onClickNanoflow);
+            setTimeout(() => {
+                this.setState({ isExecuting: false });
+            }, 200);
         }
     };
 
