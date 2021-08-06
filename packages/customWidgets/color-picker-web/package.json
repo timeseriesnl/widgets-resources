@@ -3,7 +3,7 @@
   "widgetName": "ColorPicker",
   "version": "1.1.4",
   "description": "Change a color using a color input",
-  "copyright": "Mendix BV",
+  "copyright": "© Mendix Technology BV 2021. All rights reserved.",
   "repository": {
     "type": "git",
     "url": "https://github.com/mendix/widgets-resources.git"
@@ -22,8 +22,8 @@
     "dev": "utils-react-widgets dev",
     "test": "npm run test:unit",
     "test:unit": "jest --config ../../../scripts/test/jest.web.config.js",
-    "pretest:e2e": "node ../../../scripts/test/updateAtlas.js",
-    "test:e2e": "pluggable-widgets-tools test:e2e:web --mx-version 8",
+    "pretest:e2e": "node ../../../scripts/test/updateAtlas.js --latest-atlas",
+    "test:e2e": "pluggable-widgets-tools test:e2e:web",
     "test:e2e:dev": "pluggable-widgets-tools test:e2e:web:dev",
     "lint": "eslint --config ../../../.eslintrc.js --ext .jsx,.js,.ts,.tsx src/",
     "lint:fix": "npm run lint -- --fix",

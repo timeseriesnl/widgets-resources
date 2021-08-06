@@ -2,7 +2,7 @@
   "name": "popup-menu-web",
   "widgetName": "PopupMenu",
   "version": "2.0.1",
-  "copyright": "Mendix Technology B.V.",
+  "copyright": "© Mendix Technology BV 2021. All rights reserved.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
     "format": "pluggable-widgets-tools format",
     "lint": "eslint --config ../../../.eslintrc.js --ext .jsx,.js,.ts,.tsx src/",
     "test": "pluggable-widgets-tools test:unit:web",
-    "pretest:e2e": "node ../../../scripts/test/updateAtlas.js",
-    "test:e2e": "pluggable-widgets-tools test:e2e:web --mx-version 8",
+    "pretest:e2e": "node ../../../scripts/test/updateAtlas.js --latest-atlas",
+    "test:e2e": "pluggable-widgets-tools test:e2e:web",
     "test:e2e:dev": "pluggable-widgets-tools test:e2e:web:dev",
     "release": "pluggable-widgets-tools release:web",
     "release:marketplace": "node ../../../scripts/release/marketplaceRelease.js"

@@ -5,7 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## 3.0.4 - 2021-07-16
+## [3.0.5] - 2021-07-27
+
+### Changed
+- We moved resource files from web/resources to public folder.
+
+## [3.0.4] - 2021-07-16
 
 ### Added
 - We added exclusion variables for core styles, layouts and bootstrap.
@@ -18,7 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - We removed the restrictions to show the toggle sidebar widget only on phones.
 - We removed San Francisco font from default font variable.
 
-## 3.0.3 - 2021-06-29
+## [3.0.3] - 2021-06-29
 
 ### Added
 - Add default & helper styles for the accordion widget.

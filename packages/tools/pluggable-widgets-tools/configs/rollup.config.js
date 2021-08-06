@@ -8,7 +8,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "rollup-plugin-re";
 import typescript from "@rollup/plugin-typescript";
 import url from "@rollup/plugin-url";
-import { red, yellow } from "colors";
+import { red, yellow, blue } from "colors";
 import postcss from "postcss";
 import postcssUrl from "postcss-url";
 import loadConfigFile from "rollup/dist/loadConfigFile";
@@ -45,39 +45,49 @@ export default async args => {
     if (!["web", "native"].includes(platform)) {
         throw new Error("Must pass --configPlatform=web|native parameter");
     }
+    if (!production && projectPath) {
+        console.info(blue(`Project Path: ${projectPath}`));
+    }
 
     const result = [];
 
     if (platform === "web") {
-        result.push({
-            input: widgetEntry,
-            output: {
-                format: "amd",
-                file: join(outDir, `${outWidgetFile}.js`),
-                sourcemap: !production ? "inline" : false
-            },
-            external: webExternal,
-            plugins: [
-                ...getClientComponentPlugins(),
-                url({ include: imagesAndFonts, limit: 100000 }),
-                sass({ output: production, insert: !production, include: /\.(css|sass|scss)$/, processor }),
-                alias({
-                    entries: {
-                        "react-hot-loader/root": join(__dirname, "hot")
-                    }
-                }),
-                ...getCommonPlugins({
-                    sourceMaps: !production,
-                    extensions: webExtensions,
-                    transpile: production,
-                    babelConfig: {
-                        presets: [["@babel/preset-env", { targets: { safari: "12" } }]],
-                        allowAllFormats: true
-                    },
-                    external: webExternal
-                })
-            ],
-            onwarn
+        ["amd", "es"].forEach(outputFormat => {
+            result.push({
+                input: widgetEntry,
+                output: {
+                    format: outputFormat,
+                    file: join(outDir, `${outWidgetFile}.${outputFormat === "es" ? "mjs" : "js"}`),
+                    sourcemap: !production ? "inline" : false
+                },
+                external: webExternal,
+                plugins: [
+                    ...getClientComponentPlugins(),
+                    url({ include: imagesAndFonts, limit: 100000 }),
+                    sass({
+                        output: production && outputFormat === "amd",
+                        insert: !production,
+                        include: /\.(css|sass|scss)$/,
+                        processor
+                    }),
+                    alias({
+                        entries: {
+                            "react-hot-loader/root": join(__dirname, "hot")
+                        }
+                    }),
+                    ...getCommonPlugins({
+                        sourceMaps: !production,
+                        extensions: webExtensions,
+                        transpile: production,
+                        babelConfig: {
+                            presets: [["@babel/preset-env", { targets: { safari: "12" } }]],
+                            allowAllFormats: true
+                        },
+                        external: webExternal
+                    })
+                ],
+                onwarn
+            });
         });
     }
 
